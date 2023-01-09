@@ -79,7 +79,7 @@ def main():
     elif operation == "multiply":
         result = matrix1.multiply(matrix2)
     else:
-        raise ValueError("Invalid operation")
+        result = "Invalid input"
     print("Result:")
     print(result)
 
