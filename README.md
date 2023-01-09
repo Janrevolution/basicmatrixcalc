@@ -1,3 +1,4 @@
 # basicmatrixcalc
-With Bossing Yldevier
-With Master Janrevolution
+Officially Made by:
+janrevolution
+yldevierginity
