@@ -57,10 +57,10 @@ def main():
     matrix2 = Matrix(rows2, cols2)
     for i in range(rows1):
         for j in range(cols1):
-            matrix1.matrix[i][j] = int(input(f"Enter the value for matrix 1 at position ({i+1},{j+1}): "))
+            matrix1.matrix[i][j] = get_matrix_element(1, i+1, j+1)
     for i in range(rows2):
         for j in range(cols2):
-            matrix2.matrix[i][j] = int(input(f"Enter the value for matrix 2 at position ({i+1},{j+1}): "))
+            matrix2.matrix[i][j] = get_matrix_element(2, i+1, j+1)
     
     # Print the matrices
     print("Matrix 1:")
@@ -82,6 +82,17 @@ def main():
         result = "Invalid input"
     print("Result:")
     print(result)
+    
+def get_matrix_element(matrix_number, row, col):
+    while True:
+        value = input(f"Enter the value for matrix {matrix_number} at position ({row},{col}): ")
+        if value.lower() == "exit":
+            exit()
+        try:
+            value = int(value)
+            return value
+        except ValueError:
+            print("Invalid input, please input an integer only or you can simply quit the program by typing 'exit'")
 
 if __name__ == "__main__":
     main()
