@@ -1,4 +1,3 @@
-import oopMatrix
 class Matrix:
     def __init__(self, rows, columns):
         self.rows = rows
@@ -86,6 +85,7 @@ def generate_matrix():
             matrix1.matrix[i][j] = get_matrix_element(1, i+1, j+1)
     print("Matrix 1:")
     print("A = ", matrix1)
+
 def main():
     # Get the dimensions of the two matrices from the user
     try:
