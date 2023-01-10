@@ -1,3 +1,4 @@
+import oopMatrix
 class Matrix:
     def __init__(self, rows, columns):
         self.rows = rows
@@ -55,6 +56,7 @@ class Matrix:
     def __str__(self):  # This function creates spaces between elements of the matrices
         result = ""     # Initialize
         for i in range(self.rows):
+            result += "\t"
             for j in range(self.columns):
                 result += str(self.matrix[i][j]) + " " # The space between elements
             result += "\n"  # New line after a row
@@ -70,7 +72,20 @@ def get_matrix_element(matrix_number, row, col):
             print("Invalid input, please input an integer only or you can simply quit the program by typing 'exit'")
         if value.lower() == "exit":
             exit()
+def generate_matrix():
+    try:
+        rows1 = int(input("Enter the number of rows in matrix 1: "))
+        columns1 = int(input("Enter the number of columns in matrix 1: "))
+    except ValueError:
+        print("\nInvalid input! Please enter integer values\n")
+        main()
 
+    matrix1 = Matrix(rows1, columns1)
+    for i in range(rows1):
+        for j in range(columns1):
+            matrix1.matrix[i][j] = get_matrix_element(1, i+1, j+1)
+    print("Matrix 1:")
+    print("A = ", matrix1)
 def main():
     # Get the dimensions of the two matrices from the user
     try:
@@ -101,20 +116,45 @@ def main():
     print(matrix2)
     
     # Get the operation from the user
-    operation = input("Enter '+', '-', or '*' to perform the respective operation: ")
-    
-    # Perform the operation and print the result
-    if operation == "+":
-        result = matrix1.add(matrix2)
-    elif operation == "-":
-        result = matrix1.subtract(matrix2)
-    elif operation == "*":
-        result = matrix1.multiply(matrix2)
-    else:
-        result = "Invalid Operator"
+    opIsValid = True
+    while opIsValid:
+        operation = input("Enter '+', '-', or '*' to perform the respective operation: ")
+        
+        # Perform the operation and print the result
+        if operation == "+":
+            result = matrix1.add(matrix2)
+            opIsValid = False
+        elif operation == "-":
+            result = matrix1.subtract(matrix2)
+            opIsValid = False
+        elif operation == "*":
+            result = matrix1.multiply(matrix2)
+            opIsValid = False
+        else:
+            opIsValid = True
+            result = "\nInvalid Operator\n"
     print("Result:")
     print(result)
     exit()
 
 if __name__ == "__main__":
-    main()
+    while True:
+        print("\nWhat do you want to do? Please enter your choice.\n")
+        print("(1) Generate Matrix")
+        print("(2) Calculate Matrices")
+        print("(3) Exit")
+        choice = (input(">> "))
+
+        try:
+            choice = int(choice)
+            if choice == 1:
+                generate_matrix()
+            elif choice == 2:
+                main()
+            elif choice == 3:
+                exit()
+            elif choice != 1 or choice != 2:
+                raise ValueError("Invalid")
+        except ValueError as valerr:
+            print("\nInvalid Choice. Please Try again")
+            __name__
